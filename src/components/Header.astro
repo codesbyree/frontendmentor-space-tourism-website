@@ -1,18 +1,20 @@
 ---
 import logo from "/src/assets/shared/logo.svg";
 import icon from "/src/assets/shared/icon-hamburger.svg"
+import close from "/src/assets/shared/icon-close.svg"
 ---
 
 <header class="header">
-    <img src={logo.src} alt="logo" />
+    <img src={logo.src} alt="logo" class="image" />
     <hr />
-    <ul class="nav">
-        <li><a href="/">00 HOME</a></li>
-        <li><a href="/">01 DESTINATIONS</a></li>
-        <li><a href="/">02 CREW</a></li>
-        <li><a href="/">03 TECHNOLOGY</a></li>
-    </ul>
-    <button class="icon" ><img src={icon.src} alt="toggle" /></button>
+    <nav class="navbar">
+        <a href="#">00 HOME</a>
+        <a href="#">01 DESTINATIONS</a>
+        <a href="#">02 CREW</a>
+        <a href="#">03 TECHNOLOGY</a>
+    </nav>
+    <button class="navigation_button" ><img src={icon.src} alt="toggle" /></button>
+    <button class="close_button" style="display: none; z-index:1" hidden> <img src={close.src} alt="close" /></button>
 </header>
 
 <style>
@@ -21,18 +23,17 @@ import icon from "/src/assets/shared/icon-hamburger.svg"
         display: flex;
         justify-content: space-between;
         align-items: center;
-        /* padding:0.5rem; */
         padding-bottom: 0px;
         padding-right: 0px;
         margin-top:1.3rem ;
     }
-    img{
+    .image{
         width: 35px;
         margin-left: 20px;
         margin-right: 20px;
         position: static;
     }
-    .ul a{
+    .navbar a{
         font-weight: 100 !important;
     }
     hr{
@@ -43,7 +44,7 @@ import icon from "/src/assets/shared/icon-hamburger.svg"
         position: relative;
         z-index: 1;
     }
-    .nav{
+    .navbar{
         display: flex;
         justify-content: space-evenly;
         min-width: 640px;
@@ -54,20 +55,16 @@ import icon from "/src/assets/shared/icon-hamburger.svg"
         font-family: "BarlowCondensed-Regular";
         font-weight: 300;
     }
-    .li a:hover,
-    .li.a:focus{
+    .navbar a:focus{
         border: 0;
         border-bottom: 2px solid #f1f1f1;
-        padding-bottom: 1.3rem;
+
     }
-    .icon {
+    .navigation_button {
         display: none;
     }
 
-    .expanded {
-    display: unset;
-    }
-    ul{
+    nav{
         display: block;
         list-style-type: 0px;
     }
@@ -76,7 +73,7 @@ import icon from "/src/assets/shared/icon-hamburger.svg"
         hr{
             display: none;
         }
-        .nav{
+        .navbar{
             width: -webkit-fill-available;
             min-width: 0px;
         }
@@ -87,23 +84,34 @@ import icon from "/src/assets/shared/icon-hamburger.svg"
 
     }
 
-    @media screen and (max-width: 375px) {
-        .nav{
+    @media screen and (max-width: 600px) {
+        .navbar{
             display: none;
             position: absolute;
-            top: 4rem;
+            top: 0rem;
             height: -webkit-fill-available;
             flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
+            justify-content: flex-start;
+            align-items: start;
+            right: 0;
+            max-width: 70%;
+            padding-top: 6rem;
+            background-color: rgba(0,0,0,0) !important;
+        }
 
+        .navbar a{
+            margin: 1rem;
+            margin-left: 2rem;
+        }
+        .navbar a:focus{
+            border: 0;
+            border-bottom: 1px solid #f1f1f1; 
         }
         .header{
-            
             padding: 1rem;
             padding-left: 0;
         }
-        .icon {
+        .navigation_button {
             display: block;
             position: absolute;
             right: 20px;
@@ -117,10 +125,21 @@ import icon from "/src/assets/shared/icon-hamburger.svg"
 
 <script>
     
-    const buttom = document.getElementsByClassName("icon")[0];
-    const nav = document.getElementsByClassName("nav")[0] as HTMLElement;
+    const buttom = document.getElementsByClassName("navigation_button")[0] as HTMLElement;
+    const closeButtom = document.getElementsByClassName("close_button")[0] as HTMLElement;
+    const nav = document.getElementsByClassName("navbar")[0] as HTMLElement;
 
     buttom.addEventListener("click", () => {
-        nav.style.display = nav.style.display === "none" ? "inherit" : "none";
+        nav.style.display = "inherit";
+        buttom.style.display =  "none";
+        closeButtom.style.display = "block" ;
     });
+
+    closeButtom.addEventListener("click", () => {
+        nav.style.display =  "none" ;
+        buttom.style.display =  "block" ;
+        closeButtom.style.display = "none" ;
+
+    });
+
 </script>
