@@ -14,13 +14,13 @@ import close from "/src/assets/shared/icon-close.svg"
         <a href="#">03 TECHNOLOGY</a>
     </nav>
     <button class="navigation_button" ><img src={icon.src} alt="toggle" /></button>
-    <button class="close_button" style="display: none; z-index:1" hidden> <img src={close.src} alt="close" /></button>
+    <button class="close_button" style="display: none; z-index:9999" hidden> <img src={close.src} alt="close" /></button>
 </header>
 
 <style>
     /* You also can write css code */
     .header {
-        display: flex;
+        display: flex ;
         justify-content: space-between;
         align-items: center;
         padding-bottom: 0px;
@@ -74,8 +74,12 @@ import close from "/src/assets/shared/icon-close.svg"
             display: none;
         }
         .navbar{
-            width: -webkit-fill-available;
+            display: flex;
+            width: -webkit-fill-available !important;
             min-width: 0px;
+        }
+        .navigation_button {
+        display: none !important;
         }
 
         .header{
@@ -97,6 +101,7 @@ import close from "/src/assets/shared/icon-close.svg"
             max-width: 70%;
             padding-top: 6rem;
             background-color: rgba(0,0,0,0) !important;
+            z-index: 4;
         }
 
         .navbar a{
@@ -112,7 +117,7 @@ import close from "/src/assets/shared/icon-close.svg"
             padding-left: 0;
         }
         .navigation_button {
-            display: block;
+            display: block !important;
             position: absolute;
             right: 20px;
             top: 20px;
@@ -130,7 +135,7 @@ import close from "/src/assets/shared/icon-close.svg"
     const nav = document.getElementsByClassName("navbar")[0] as HTMLElement;
 
     buttom.addEventListener("click", () => {
-        nav.style.display = "inherit";
+        nav.style.display = "flex";
         buttom.style.display =  "none";
         closeButtom.style.display = "block" ;
     });
@@ -140,6 +145,19 @@ import close from "/src/assets/shared/icon-close.svg"
         buttom.style.display =  "block" ;
         closeButtom.style.display = "none" ;
 
+    });
+
+    window.addEventListener("resize", () => {
+        if(window.innerWidth > 600){
+            buttom.style.display = "none";
+            closeButtom.style.display = "none";
+            nav.style.display = "flex";
+        }
+        else{
+            buttom.style.display = "block";
+            closeButtom.style.display = "none";
+            nav.style.display = "none";
+        }
     });
 
 </script>
