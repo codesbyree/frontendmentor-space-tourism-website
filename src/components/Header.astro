@@ -1,10 +1,163 @@
+---
+import logo from "/src/assets/shared/logo.svg";
+import icon from "/src/assets/shared/icon-hamburger.svg"
+import close from "/src/assets/shared/icon-close.svg"
+---
+
 <header class="header">
-    Header
+    <img src={logo.src} alt="logo" class="image" />
+    <hr />
+    <nav class="navbar">
+        <a href="#">00 HOME</a>
+        <a href="#">01 DESTINATIONS</a>
+        <a href="#">02 CREW</a>
+        <a href="#">03 TECHNOLOGY</a>
+    </nav>
+    <button class="navigation_button" ><img src={icon.src} alt="toggle" /></button>
+    <button class="close_button" style="display: none; z-index:9999" hidden> <img src={close.src} alt="close" /></button>
 </header>
 
 <style>
     /* You also can write css code */
     .header {
-        background: turquoise;
+        display: flex ;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0px;
+        padding-right: 0px;
+        margin-top:1.3rem ;
     }
+    .image{
+        width: 35px;
+        margin-left: 20px;
+        margin-right: 20px;
+        position: static;
+    }
+    .navbar a{
+        font-weight: 100 !important;
+    }
+    hr{
+        width: 37rem;
+        border: 0;
+        border-top: 0.1px solid #e7e7e759;
+        left: 4rem;
+        position: relative;
+        z-index: 1;
+    }
+    .navbar{
+        display: flex;
+        justify-content: space-evenly;
+        min-width: 640px;
+        padding: 3.2vh;
+        background-color: rgba(255, 255, 255, 16%);
+        backdrop-filter: blur(50px);
+        color: white;
+        font-family: "BarlowCondensed-Regular";
+        font-weight: 300;
+    }
+    .navbar a:focus{
+        border: 0;
+        border-bottom: 2px solid #f1f1f1;
+
+    }
+    .navigation_button {
+        display: none;
+    }
+
+    nav{
+        display: block;
+        list-style-type: 0px;
+    }
+
+    @media screen and (max-width: 768px) {
+        hr{
+            display: none;
+        }
+        .navbar{
+            display: flex;
+            width: -webkit-fill-available !important;
+            min-width: 0px;
+        }
+        .navigation_button {
+        display: none !important;
+        }
+
+        .header{
+            margin-top: 0px;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .navbar{
+            display: none;
+            position: absolute;
+            top: 0rem;
+            height: -webkit-fill-available;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: start;
+            right: 0;
+            max-width: 70%;
+            padding-top: 6rem;
+            background-color: rgba(0,0,0,0) !important;
+            z-index: 4;
+        }
+
+        .navbar a{
+            margin: 1rem;
+            margin-left: 2rem;
+        }
+        .navbar a:focus{
+            border: 0;
+            border-bottom: 1px solid #f1f1f1; 
+        }
+        .header{
+            padding: 1rem;
+            padding-left: 0;
+        }
+        .navigation_button {
+            display: block !important;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            z-index: 1;
+        }
+
+    }
+
 </style>
+
+<script>
+    
+    const buttom = document.getElementsByClassName("navigation_button")[0] as HTMLElement;
+    const closeButtom = document.getElementsByClassName("close_button")[0] as HTMLElement;
+    const nav = document.getElementsByClassName("navbar")[0] as HTMLElement;
+
+    buttom.addEventListener("click", () => {
+        nav.style.display = "flex";
+        buttom.style.display =  "none";
+        closeButtom.style.display = "block" ;
+    });
+
+    closeButtom.addEventListener("click", () => {
+        nav.style.display =  "none" ;
+        buttom.style.display =  "block" ;
+        closeButtom.style.display = "none" ;
+
+    });
+
+    window.addEventListener("resize", () => {
+        if(window.innerWidth > 600){
+            buttom.style.display = "none";
+            closeButtom.style.display = "none";
+            nav.style.display = "flex";
+        }
+        else{
+            buttom.style.display = "block";
+            closeButtom.style.display = "none";
+            nav.style.display = "none";
+        }
+    });
+
+</script>
