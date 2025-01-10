@@ -23,6 +23,26 @@ import Header from "../components/Header.astro"
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		background-image: url('/src/assets/home/background-home-desktop.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	@media screen and (max-width: 768px) {
+		html,
+		body {
+			background-image: url('/src/assets/home/background-home-tablet.jpg');
+		}
+		
+	}
+
+	@media screen and (max-width: 375px) {
+		html,
+		body {
+			background-image: url('/src/assets/home/background-home-mobile.jpg');
+		}
+		
 	}
 
 	/* Register your custom font family and tell the browser where to find it. */
