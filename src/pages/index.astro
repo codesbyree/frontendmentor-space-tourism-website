@@ -1,56 +1,63 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-import BgHomeDesktop from '../assets/home/background-home-desktop.jpg'
-import BgHomeTablet from '../assets/home/background-home-tablet.jpg'
-import BgHomeMobile from '../assets/home/background-home-mobile.jpg'
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<main class="main_section relative h-screen overflow-hidden">
-		<section class="absolute h-full p-6 flex flex-col max-w-[1110px] md:px-10 md:py-32 md:gap-16 xl:-translate-x-1/2 xl:left-1/2 xl:w-full xl:flex-row xl:items-end xl:justify-between">
-			<div class="flex flex-col gap-6 items-center xl:items-start">
-				<p class="font-sans-codensed text-theme-blue-300 md:text-[28px] md:tracking-[4px]">SO, YOU WANT TO TRAVEL TO</p>
-				<p class="font-serif text-white text-7xl md:text-[144px]">SPACE</p>
-				<p class="font-sans text-center leading-8 text-theme-blue-300 md:max-w-[50%] xl:text-left xl:max-w-[75%]">Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!</p>
-			</div>
-			
-			<div class="flex-1 flex items-center justify-center xl:flex-none">
-				<a href="" class="homepage_cta font-serif bg-white text-theme-blue-900 grid place-items-center w-36 h-36 rounded-full shadow-red-200 md:w-[272px] md:h-[272px] md:text-[32px]">EXPLORE</a>
-			</div>
-		</section>
+  <main class="main_section relative h-screen overflow-hidden">
+    <section
+      class="absolute h-full p-6 flex flex-col max-w-[1110px] md:px-10 md:py-32 md:gap-16 xl:-translate-x-1/2 xl:left-1/2 xl:w-full xl:flex-row xl:items-end xl:justify-between"
+    >
+      <div class="flex flex-col gap-6 items-center xl:items-start">
+        <p
+          class="font-sans-codensed text-theme-blue-300 md:text-[28px] md:tracking-[4px]"
+        >
+          SO, YOU WANT TO TRAVEL TO
+        </p>
+        <p class="font-serif text-white text-7xl md:text-[144px]">SPACE</p>
+        <p
+          class="font-sans text-center leading-8 text-theme-blue-300 md:max-w-[50%] xl:text-left xl:max-w-[75%]"
+        >
+          Let’s face it; if you want to go to space, you might as well genuinely
+          go to outer space and not hover kind of on the edge of it. Well sit
+          back, and relax because we’ll give you a truly out of this world
+          experience!
+        </p>
+      </div>
 
-		<picture>
-			<source media="(max-width: 480px)" srcset={BgHomeMobile.src} />
-			<source media="(max-width: 768px)" srcset={BgHomeTablet.src} />
-			<img src={BgHomeDesktop.src} class="w-full h-screen fixed top-0 left-0 object-cover -z-10" />
-		</picture>
-	</main>
+      <div class="flex-1 flex items-center justify-center xl:flex-none">
+        <a
+          href=""
+          class="homepage_cta font-serif bg-white text-theme-blue-900 grid place-items-center w-36 h-36 rounded-full shadow-red-200 md:w-[272px] md:h-[272px] md:text-[32px]"
+          >EXPLORE</a
+        >
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <style>
-	.homepage_cta {
-		position: relative;
-	}
+  .homepage_cta {
+    position: relative;
+  }
 
-	.homepage_cta::after {
-		--dimension: 100%;
+  .homepage_cta::after {
+    --dimension: 100%;
 
-		position: absolute;
-		content: '';
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		background: #FFFFFF;
-		opacity: 10%;
-		width: var(--dimension);
-		height: var(--dimension);
-		border-radius: 100%;
-		z-index: -1;
-		transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-	}
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    opacity: 10%;
+    width: var(--dimension);
+    height: var(--dimension);
+    border-radius: 100%;
+    z-index: -1;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
 
-	.homepage_cta:hover::after {
-		--dimension: 200%;
-	}
+  .homepage_cta:hover::after {
+    --dimension: 200%;
+  }
 </style>

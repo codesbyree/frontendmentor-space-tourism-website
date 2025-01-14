@@ -1,70 +1,70 @@
 ---
-import Header from "../components/Header.astro"
+import Header from "../components/Header.astro";
+
+import BgHomeDesktop from "../assets/home/background-home-desktop.jpg";
+import BgHomeTablet from "../assets/home/background-home-tablet.jpg";
+import BgHomeMobile from "../assets/home/background-home-mobile.jpg";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/*" href="/favicon-32x32.png" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Frontend Mentor | Space Tourism Website</title>
-	</head>
-	<body>
-		<Header />
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/*" href="/favicon-32x32.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Frontend Mentor | Space Tourism Website</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+
+    <!-- background image -->
+    <picture>
+      <source media="(max-width: 480px)" srcset={BgHomeMobile.src} />
+      <source media="(max-width: 768px)" srcset={BgHomeTablet.src} />
+      <img
+        src={BgHomeDesktop.src}
+        class="w-full h-screen fixed top-0 left-0 object-cover -z-10"
+      />
+    </picture>
+  </body>
 </html>
 
 <style is:global>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		background-image: url('/src/assets/home/background-home-desktop.jpg');
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-	@media screen and (max-width: 768px) {
-		html,
-		body {
-			background-image: url('/src/assets/home/background-home-tablet.jpg');
-		}
-		
-	}
-
-	@media screen and (max-width: 375px) {
-		html,
-		body {
-			background-image: url('/src/assets/home/background-home-mobile.jpg');
-		}
-		
-	}
-
-	/* Register your custom font family and tell the browser where to find it. */
-	@font-face {
-		font-family: 'Barlow-Regular';
-		src: url('/fonts/Barlow-Regular.woff2') format('woff2'), url('/fonts/Barlow-Regular.ttf');
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
-	@font-face {
-		font-family: 'BarlowCondensed-Regular';
-		src: url('/fonts/BarlowCondensed-Regular.woff2') format('woff2'), url('/fonts/BarlowCondensed-Regular.ttf') format('ttf');
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
-	@font-face {
-		font-family: 'Bellefair-Regular';
-		src: url('/fonts/Bellefair-Regular.woff2') format('woff2'), url('/fonts/Bellefair-Regular.ttf') format('ttf');
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
+  /* Register your custom font family and tell the browser where to find it. */
+  @font-face {
+    font-family: "Barlow-Regular";
+    src:
+      url("/fonts/Barlow-Regular.woff2") format("woff2"),
+      url("/fonts/Barlow-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "BarlowCondensed-Regular";
+    src:
+      url("/fonts/BarlowCondensed-Regular.woff2") format("woff2"),
+      url("/fonts/BarlowCondensed-Regular.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Bellefair-Regular";
+    src:
+      url("/fonts/Bellefair-Regular.woff2") format("woff2"),
+      url("/fonts/Bellefair-Regular.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 </style>
