@@ -1,166 +1,87 @@
 ---
+const { pathname } = Astro.url;
+
 import logo from "/src/assets/shared/logo.svg";
-import icon from "/src/assets/shared/icon-hamburger.svg";
-import close from "/src/assets/shared/icon-close.svg";
+import hamburgerIcon from "/src/assets/shared/icon-hamburger.svg";
+import closeIcon from "/src/assets/shared/icon-close.svg";
+
+const pageUrls = [
+  { path: "/", name: "Home" },
+  { path: "/destination", name: "Destination" },
+  { path: "/crew", name: "Crew" },
+  { path: "/technology", name: "Technology" },
+];
 ---
 
-<header class="header">
-  <img src={logo.src} alt="logo" class="image" />
-  <hr />
-  <nav class="navbar">
-    <a href="#">00 HOME</a>
-    <a href="#">01 DESTINATIONS</a>
-    <a href="#">02 CREW</a>
-    <a href="#">03 TECHNOLOGY</a>
+<header
+  class="flex justify-between items-center max-w-screen-2xl fixed top-0 left-1/2 -translate-x-1/2 w-full z-40 p-6 md:p-0 md:pl-10 md:gap-7 xl:pt-8 xl:pl-20 xl:gap-0"
+>
+  <img src={logo.src} alt="logo" class="shrink-0 w-10 h-10 md:w-12 md:h-12" />
+
+  <span class="w-full h-[1px] bg-white/30 ml-20 hidden xl:block"></span>
+
+  <nav
+    id="nav"
+    class="absolute h-screen right-0 hidden top-0 z-50 w-3/4 md:block md:h-max md:static md:w-max"
+  >
+    <div
+      class="flex h-full flex-col gap-8 pt-32 p-10 pr-0 bg-slate-600/30 backdrop-blur-xl md:p-0 md:flex-row md:gap-10 md:justify-end md:px-10 md:pl-20 xl:px-20 xl:pl-52 xl:gap-16"
+    >
+      {
+        pageUrls.map((url, index) => (
+          <a
+            href={url.path}
+            class={`text-white font-sans-codensed tracking-[2px] relative after:absolute after:top-0 after:h-full after:w-[2px] after:bg-white after:right-0 md:after:top-[auto] md:after:bottom-0 md:after:h-[3px] md:after:w-full md:py-9 md:w-max text-nowrap flex gap-3 ${pathname === url.path ? "after:block" : "after:hidden"}`}
+          >
+            <span class="font-bold">0{index}</span>
+            <span class="uppercase">{url.name}</span>
+          </a>
+        ))
+      }
+    </div>
   </nav>
-  <button class="navigation_button"><img src={icon.src} alt="toggle" /></button>
-  <button class="close_button" style="display: none; z-index:9999" hidden>
-    <img src={close.src} alt="close" /></button
+
+  <button
+    id="nav_open_button"
+    class="relative z-50 shrink-0 md:hidden"
+    data-pressed="false"
+    ><img
+      src={hamburgerIcon.src}
+      width={hamburgerIcon.width}
+      height={hamburgerIcon.height}
+      alt="toggle"
+    />
+    <span class="sr-only">close navigation</span>
+  </button>
+
+  <button
+    id="nav_close_button"
+    class="relative hidden shrink-0 z-50 md:hidden"
+    data-pressed="false"
+    ><img
+      src={closeIcon.src}
+      width={closeIcon.width}
+      height={closeIcon.height}
+      alt="toggle"
+    />
+    <span class="sr-only">close navigation</span></button
   >
 </header>
 
-<style>
-  /* You also can write css code */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 0px;
-    padding-right: 0px;
-    margin-top: 1.3rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-  }
-  .image {
-    width: 35px;
-    margin-left: 20px;
-    margin-right: 20px;
-    position: static;
-  }
-  .navbar a {
-    font-weight: 100 !important;
-  }
-  hr {
-    width: 37rem;
-    border: 0;
-    border-top: 0.1px solid #e7e7e759;
-    left: 4rem;
-    position: relative;
-    z-index: 1;
-  }
-  .navbar {
-    display: flex;
-    justify-content: space-evenly;
-    min-width: 640px;
-    padding: 3.2vh;
-    background-color: rgba(255, 255, 255, 16%);
-    backdrop-filter: blur(50px);
-    color: white;
-    font-family: "BarlowCondensed-Regular";
-    font-weight: 300;
-  }
-  .navbar a:focus {
-    border: 0;
-    border-bottom: 2px solid #f1f1f1;
-  }
-  .navigation_button {
-    display: none;
-  }
+<script type="module">
+  const navOpenButton = document.getElementById("nav_open_button");
+  const navCloseButton = document.getElementById("nav_close_button");
+  const nav = document.getElementById("nav");
 
-  nav {
-    display: block;
-    list-style-type: 0px;
-  }
-
-  @media screen and (max-width: 768px) {
-    hr {
-      display: none;
-    }
-    .navbar {
-      display: flex;
-      width: -webkit-fill-available !important;
-      min-width: 0px;
-    }
-    .navigation_button {
-      display: none !important;
-    }
-
-    .header {
-      margin-top: 0px;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    .navbar {
-      display: none;
-      position: absolute;
-      top: 0rem;
-      height: -webkit-fill-available;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: start;
-      right: 0;
-      max-width: 70%;
-      padding-top: 6rem;
-      background-color: rgba(0, 0, 0, 0) !important;
-      z-index: 4;
-    }
-
-    .navbar a {
-      margin: 1rem;
-      margin-left: 2rem;
-    }
-    .navbar a:focus {
-      border: 0;
-      border-bottom: 1px solid #f1f1f1;
-    }
-    .header {
-      padding: 1rem;
-      padding-left: 0;
-    }
-    .navigation_button {
-      display: block !important;
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      z-index: 1;
-    }
-  }
-</style>
-
-<script>
-  const buttom = document.getElementsByClassName(
-    "navigation_button"
-  )[0] as HTMLElement;
-  const closeButtom = document.getElementsByClassName(
-    "close_button"
-  )[0] as HTMLElement;
-  const nav = document.getElementsByClassName("navbar")[0] as HTMLElement;
-
-  buttom.addEventListener("click", () => {
-    nav.style.display = "flex";
-    buttom.style.display = "none";
-    closeButtom.style.display = "block";
+  navOpenButton?.addEventListener("click", () => {
+    nav?.classList.remove("hidden");
+    navCloseButton?.classList.remove("hidden");
+    navOpenButton.classList.add("hidden");
   });
 
-  closeButtom.addEventListener("click", () => {
-    nav.style.display = "none";
-    buttom.style.display = "block";
-    closeButtom.style.display = "none";
-  });
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 600) {
-      buttom.style.display = "none";
-      closeButtom.style.display = "none";
-      nav.style.display = "flex";
-    } else {
-      buttom.style.display = "block";
-      closeButtom.style.display = "none";
-      nav.style.display = "none";
-    }
+  navCloseButton?.addEventListener("click", () => {
+    nav?.classList.add("hidden");
+    navCloseButton?.classList.add("hidden");
+    navOpenButton?.classList.remove("hidden");
   });
 </script>
