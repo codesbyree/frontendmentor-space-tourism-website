@@ -1,5 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+import BgHomeDesktop from "../assets/home/background-home-desktop.jpg";
+import BgHomeTablet from "../assets/home/background-home-tablet.jpg";
+import BgHomeMobile from "../assets/home/background-home-mobile.jpg";
 ---
 
 <Layout>
@@ -32,6 +36,16 @@ import Layout from "../layouts/Layout.astro";
         >
       </div>
     </section>
+
+    <!-- background image -->
+    <picture>
+      <source media="(max-width: 480px)" srcset={BgHomeMobile.src} />
+      <source media="(max-width: 768px)" srcset={BgHomeTablet.src} />
+      <img
+        src={BgHomeDesktop.src}
+        class="w-full h-full fixed top-0 left-0 object-cover -z-10"
+      />
+    </picture>
   </main>
 </Layout>
 
