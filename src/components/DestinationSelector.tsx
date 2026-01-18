@@ -111,7 +111,7 @@ export default function DestinationSelector() {
             <div className='flex flex-col gap-4 mt-4'>
                 <h2 className='uppercase text-white font-serif text-center text-6xl md:text-8xl xl:text-left'>{selectedDestinations}</h2>
                 
-                <div className='min-h-32 md:min-h-20 xl:min-h-32 relative'>
+                <div className='min-h-32 md:min-h-20 xl:min-h-28 relative'>
                     {destinationDescription.map(desc => (
                         <p key={desc.title} className={clsx('text-base absolute top-0 self-center text-blue-300 leading-7 font-sans text-center transition-all duration-500 xl:text-left xl:text-lg', selectedDestinations === desc.title ? 'opacity-100' : 'opacity-0')}>{desc.description}</p>
                     ))}
