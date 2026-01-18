@@ -1,14 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-import MoonImageWebp from "../assets/destination/image-moon.webp";
-import MoonImage from "../assets/destination/image-moon.png";
+import DestinationPageBackground from "../components/DestinationPageBackground.astro";
+import DestinationSelector from "../components/DestinationSelector";
 ---
 
 <Layout>
-  <main class="main_section relative h-screen overflow-hidden">
+  <main class="relative min-h-screen overflow-hidden">
     <section
-      class="absolute h-full w-full p-6 flex flex-col max-w-screen-xl pt-32 md:px-10 md:py-32 md:gap-16 xl:-translate-x-1/2 xl:left-1/2 xl:w-full xl:flex-row xl:items-end xl:justify-between"
+      class="h-full w-full p-6 flex flex-col gap-8 max-w-screen-xl pt-32 md:px-10 md:py-32 md:gap-16 xl:-translate-x-1/2 xl:left-1/2 xl:w-full xl:flex-row xl:items-end xl:justify-between"
     >
       <h1 class="font-sans-codensed tracking-widest text-base text-center md:text-[28px]">
         <span class="text-white/25 font-bold mr-6" aria-hidden="true">01</span><span class="text-white"
@@ -16,9 +16,11 @@ import MoonImage from "../assets/destination/image-moon.png";
         >
       </h1>
 
-      <section class="flex flex-col">
-        <img src={MoonImage.src} width={MoonImage.width} height={MoonImage.height} srcset={MoonImageWebp.src} />
+      <section class="flex flex-col gap-6">
+        <DestinationSelector client:visible />
       </section>
     </section>
+
+    <DestinationPageBackground />
   </main>
 </Layout>
