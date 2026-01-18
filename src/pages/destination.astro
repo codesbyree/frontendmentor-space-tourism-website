@@ -8,7 +8,7 @@ import DestinationSelector from "../components/DestinationSelector";
 <Layout>
   <main class="relative min-h-screen overflow-hidden">
     <section
-      class="h-full w-full p-6 flex flex-col gap-8 max-w-screen-xl pt-32 md:px-10 md:py-32 xl:max-w-screen-xl xl:mx-auto xl:gap-36 xl:pb-0"
+      class="h-full w-full p-6 flex flex-col gap-8 max-w-screen-xl pt-32 md:px-10 md:py-32 xl:max-w-screen-xl xl:mx-auto xl:gap-36 xl:pt-40 xl:pb-0"
     >
       <h1 class="font-sans-codensed tracking-widest text-base text-center md:text-left md:text-xl">
         <span class="text-white/25 font-bold mr-6" aria-hidden="true">01</span><span class="text-white"
@@ -16,7 +16,9 @@ import DestinationSelector from "../components/DestinationSelector";
         >
       </h1>
 
-      <section class="w-full flex flex-col gap-6 max-w-[514px] mx-auto xl:flex-row xl:max-w-full xl:gap-28">
+      <section
+        class="w-full flex flex-col gap-6 max-w-[514px] mx-auto xl:flex-row xl:max-w-full xl:gap-28 xl:justify-center"
+      >
         <DestinationSelector client:visible />
       </section>
     </section>
