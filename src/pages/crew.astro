@@ -2,18 +2,21 @@
 import Layout from "../layouts/Layout.astro";
 
 import CrewPageBackground from "../components/CrewPageBackground.astro";
+import CrewSlider from "../components/CrewSllider";
 ---
 
 <Layout>
-  <main class="relative min-h-screen overflow-hidden">
+  <main class="relative min-h-screen overflow-hidden flex flex-col">
     <section
-      class="h-full w-full p-6 flex flex-col gap-8 max-w-screen-xl pt-32 md:px-10 md:py-32 xl:max-w-screen-xl xl:mx-auto xl:gap-36 xl:pb-0"
+      class="h-full w-full p-6 pb-0 flex flex-col flex-1 gap-12 max-w-screen-xl pt-32 md:px-10 md:py-32 md:pb-0 xl:max-w-screen-xl xl:mx-auto xl:gap-36 xl:pt-40 xl:pb-20"
     >
       <h1 class="font-sans-codensed tracking-widest text-base text-center md:text-left md:text-xl">
         <span class="text-white/25 font-bold mr-6" aria-hidden="true">01</span><span class="text-white"
           >MEET YOUR CREW</span
         >
       </h1>
+
+      <CrewSlider client:visible />
     </section>
 
     <CrewPageBackground />
