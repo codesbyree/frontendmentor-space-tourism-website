@@ -66,60 +66,31 @@ export default function CrewSlider() {
   const [activeIndex, setActiveIndex] = useState(1);
 
   return (
-    <section className="w-full h-full flex flex-col flex-1 xl:flex-row relative">
-      <div className="flex-[.9] md:flex-[.7] w-full relative z-20 flex flex-col md:max-w-[512px] md:mx-auto xl:justify-center">
-        {crewsNameAndDescription.map((cd) => (
-          <article
-            key={cd.name}
-            className={clsx(
-              "absolute gap-6 flex flex-col",
-              activeIndex === cd.id ? "opacity-100" : "opacity-0",
-            )}
-          >
-            <div className="flex flex-col-reverse gap-2 md:gap-4">
-              <h2
-                aria-label="crew name"
+    <div className="flex-1 grid grid-rows-2 gap-8 md:grid-rows-[.48fr,_1fr] xl:grid-rows-1 xl:grid-cols-2">
+      <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col justify-between md:w-full md:max-w-lg md:mx-auto xl:grid xl:grid-rows-[1fr,_max-content] xl:gap-10 xl:max-w-full xl:grid-cols-1 xl:relative xl:z-20">
+          <div className="relative flex-1 flex xl:flex-row xl:items-center">
+            {crewsNameAndDescription.map((cd) => (
+              <CrewDetail data={cd} activeIndex={activeIndex} key={cd.id} />
+            ))}
+          </div>
+
+          <div className="flex gap-4 justify-center xl:pb-12 xl:justify-start xl:gap-10">
+            {crewsId.map((i) => (
+              <button
+                onClick={() => setActiveIndex(i)}
                 className={clsx(
-                  "text-center font-serif uppercase text-white text-2xl transition-all duration-500 md:text-5xl xl:text-left xl:text-6xl",
-                  activeIndex === cd.id
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-5",
+                  "w-2 h-2 xl:w-4 xl:h-4 rounded-full transition-colors duration-300",
+                  activeIndex === i ? "bg-white" : "bg-white/50",
                 )}
-              >
-                {cd.name}
-              </h2>
-              <h3
-                aria-label="job title"
-                className="text-center font-serif text-white/50 text-lg md:text-2xl xl:text-left xl:text-3xl"
-              >
-                {cd.title}
-              </h3>
-            </div>
-
-            <p
-              aria-label="job description"
-              className="text-center font-sans text-blue-300 leading-7 text-base xl:text-left"
-            >
-              {cd.description}
-            </p>
-          </article>
-        ))}
-
-        <div className="flex items-center gap-4 justify-center w-full absolute bottom-6 md:bottom-12 xl:bottom-0 xl:justify-start xl:gap-10">
-          {crewsId.map((i) => (
-            <button
-              onClick={() => setActiveIndex(i)}
-              className={clsx(
-                "w-3 h-3 xl:w-4 xl:h-4 rounded-full transition-colors duration-300",
-                activeIndex === i ? "bg-white" : "bg-white/50",
-              )}
-              key={i}
-            ></button>
-          ))}
+                key={i}
+              ></button>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="flex-1 relative overflow-hidden">
+      <div className="relative overflow-hidden xl:z-0">
         <div
           className={clsx(
             "flex flex-row absolute top-0 left-0 h-full w-full transition-all duration-700",
@@ -146,7 +117,50 @@ export default function CrewSlider() {
         </div>
       </div>
 
-      <div className="w-full h-32 bg-gradient-to-t from-[rgba(11,13,22,1)] to-[rgba(11,13,22,0)] via-[rgba(11,13,22,.5)] absolute bottom-0 left-0 xl:h-48"></div>
-    </section>
+      <div className="w-full h-28 bg-gradient-to-t from-[rgba(11,13,22,1)] to-[rgba(11,13,22,0)] via-[rgba(11,13,22,.8)] absolute bottom-0 left-0 xl:h-60 z-10"></div>
+    </div>
+  );
+}
+
+type CrewDetailProps = {
+  activeIndex: number;
+  data: Omit<CrewTypes, "image">;
+};
+
+function CrewDetail({ activeIndex, data }: CrewDetailProps) {
+  return (
+    <article
+      className={clsx(
+        "absolute gap-6 flex flex-col",
+        activeIndex === data.id ? "opacity-100" : "opacity-0",
+      )}
+    >
+      <div className="flex flex-col-reverse gap-2 md:gap-4">
+        <h2
+          aria-label="crew name"
+          className={clsx(
+            "text-center font-serif uppercase text-white text-2xl transition-all duration-500 md:text-4xl xl:text-left xl:text-[3.5rem] xl:leading-[3.5rem]",
+            activeIndex === data.id
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-5",
+          )}
+        >
+          {data.name}
+        </h2>
+        <h3
+          aria-label="job title"
+          className="text-center font-serif text-white/50 text-lg md:text-2xl xl:text-left xl:text-3xl"
+        >
+          {data.title}
+        </h3>
+      </div>
+
+      <p
+        aria-label="job description"
+        className="text-center font-sans text-blue-300 leading-7 text-base xl:text-left"
+      >
+        {data.description}
+      </p>
+    </article>
   );
 }
