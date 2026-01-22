@@ -1,0 +1,11 @@
+---
+import BgSmall from "../assets/technology/background-technology-mobile.jpg";
+import BgMedium from "../assets/technology/background-technology-tablet.jpg";
+import BgBig from "../assets/technology/background-technology-desktop.jpg";
+---
+
+<picture aria-hidden="true">
+  <source media="(max-width: 480px)" srcset={BgSmall.src} />
+  <source media="(max-width: 768px)" srcset={BgMedium.src} />
+  <img src={BgBig.src} class="w-full h-[100dvh] fixed top-0 left-0 object-cover -z-10" />
+</picture>
