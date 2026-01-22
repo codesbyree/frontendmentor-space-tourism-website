@@ -65,8 +65,8 @@ export default function TechTabs() {
 
   return (
     <div className="flex-1 gap-8 grid grid-rows-[max-content,1fr] xl:grid-rows-1 xl:grid-cols-[1fr,_.9fr] xl:items-center">
-      <div className="flex-1 pt-16 xl:order-2">
-        <div className="-mx-6 relative pt-[calc((86/125)*100%)] md:pt-[calc((89/192)*100%)] md:-mx-10 xl:mx-0 xl:pt-[calc((1/1)*100%)] xl:-mr-[calc(100vw-1110px)]">
+      <div className="flex-1 pt-16 xl:order-2 xl:pt-0 bg-blue-600">
+        <div className="-mx-6 relative pt-[calc((86/125)*100%)] md:pt-[calc((89/192)*100%)] md:-mx-10 xl:pt-[calc((1/1)*100%)] xl:mx-0 xl:-mr-[calc((100vw-1110px)/2)]">
           {techImages.map((img) => (
             <picture key={img.id}>
               <source media="(min-width: 1280px)" srcSet={img.image.portrait} />
@@ -75,7 +75,7 @@ export default function TechTabs() {
                 src={img.image.portrait}
                 alt=""
                 className={clsx(
-                  "absolute w-full h-full object-cover transition-all duration-300 top-0",
+                  "absolute w-full h-full object-cover transition-all duration-300 top-0 left-0",
                   activeIndex === img.id ? "opacity-100" : "opacity-0",
                 )}
               />
